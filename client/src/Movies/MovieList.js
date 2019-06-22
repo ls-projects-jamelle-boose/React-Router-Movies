@@ -35,6 +35,8 @@ export default class MovieList extends Component {
   }
 }
 
+/*
+
 function MovieDetails({ movie }) {
   const { title, director, metascore, stars } = movie;
   return (
@@ -56,3 +58,5 @@ function MovieDetails({ movie }) {
     </div>
   );
 }
+
+*/
