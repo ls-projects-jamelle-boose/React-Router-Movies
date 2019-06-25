@@ -7,7 +7,6 @@ import axios from "axios";
 
 export default class Movie extends Component {
   constructor(props) {
-    console.log(`constructor`);
     super(props);
     this.state = {
       movie: null
@@ -16,7 +15,6 @@ export default class Movie extends Component {
 
   componentDidMount() {
     // change this line to grab the id passed on the URL
-    console.log(`component did mount`);
     const id = this.props.match.params.id;
     this.fetchMovie(id);
   }
@@ -33,14 +31,13 @@ export default class Movie extends Component {
   };
   // Uncomment this code when you're ready for the stretch problems
   componentDidUpdate(newProps) {
-    console.log(`component did update - newProps`);
     if (this.props.match.params.id !== newProps.match.params.id) {
       this.fetchMovie(newProps.match.params.id);
     }
   }
 
   saveMovie = () => {
-    const addToSavedList = this.props.addToSavedList;
+    const addToSavedList = this.props.save;
     addToSavedList(this.state.movie);
   };
 
@@ -52,7 +49,11 @@ export default class Movie extends Component {
     return (
       <div className="movie-list">
         <Link key={this.state.movie.id} to={`/movies/${this.state.movie.id}`}>
-          <MovieCard key={this.state.movie.id} movie={this.state.movie} />
+          <MovieCard
+            key={this.state.movie.id}
+            movie={this.state.movie}
+            save={this.saveMovie}
+          />
         </Link>
       </div>
     );
